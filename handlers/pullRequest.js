@@ -1,4 +1,4 @@
-const Typo = require("typo-js");
+const { spellCheck } = require("./checkTypo");
 
 const handlePullRequest = async (context) => {
   try {
@@ -6,8 +6,6 @@ const handlePullRequest = async (context) => {
     const defaultBranch = context.payload.repository.default_branch;
     const owner = context.payload.repository.owner.login;
     const repo = context.payload.repository.name;
-    var dictionary = new Typo("en_US");
-    var suggestionDict = [];
 
     if (baseBranch == defaultBranch) {
       const pullNumber = context.payload.pull_request.number;
@@ -31,30 +29,14 @@ const handlePullRequest = async (context) => {
         lines.map((line) => {
           if (line.startsWith("+")) {
             let lineToCheck = line.replace("+", "").trim();
-            var typoFound = false;
 
-            // replace all special chars from line
-            lineToCheck = lineToCheck.replace(/[^\w\s]/gi, '');
-
-            // check for typo in each word in each line
-            lineToCheck.split(" ").map((word) => {
-              if (!dictionary.check(word)) {
-                const suggestions = dictionary.suggest(word);
-                suggestionDict.push({
-                  filename: files[i].filename,
-                  incorrectWord: word,
-                  suggestions,
-                });
-                typoFound = true;
-              }
-            });
-            if (!typoFound)
+            const data = spellCheck(lineToCheck);
+            context.log.info(data);
+            if (data.length == 0)
               context.log.info("No typos found in line: " + lineToCheck);
           }
         });
       }
-
-      context.log.info(suggestionDict);
     }
   } catch (error) {
     context.log.error(error);
