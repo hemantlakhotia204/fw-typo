@@ -1,0 +1,249 @@
+[
+    {
+      "chunks": [
+        {
+          "content": "@@ -5,7 +5,7 @@ import reportWebVitals from \"./reportWebVitals\";",
+          "changes": [
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 5,
+              "ln2": 5,
+              "content": " import { FwAvatarC as FwAvatar, FwAvatarGroupC as FwAvatarGroup, TestView } from \"./views/test_component\";"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 6,
+              "ln2": 6,
+              "content": " "
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 7,
+              "ln2": 7,
+              "content": " let users = ["
+            },
+            {
+              "type": "del",
+              "del": true,
+              "ln": 8,
+              "content": "-  { name: \"Richard\", company: \"PiedPiper\" },"
+            },
+            {
+              "type": "add",
+              "add": true,
+              "ln": 8,
+              "content": "+  { name: \"Dinesh\", company: \"Mistk\" },"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 9,
+              "ln2": 9,
+              "content": "   { name: \"Dinesh\", company: \"PiedPiper\" },"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 10,
+              "ln2": 10,
+              "content": "   { name: \"Hemant\", company: \"PiedPiper\" },"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 11,
+              "ln2": 11,
+              "content": " ];"
+            }
+          ],
+          "oldStart": 5,
+          "oldLines": 7,
+          "newStart": 5,
+          "newLines": 7
+        },
+        {
+          "content": "@@ -21,6 +21,7 @@ root.render(",
+          "changes": [
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 21,
+              "ln2": 21,
+              "content": "       itemClicked = { (e) => console.log(\"Clicked\")}"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 22,
+              "ln2": 22,
+              "content": "     />"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 23,
+              "ln2": 23,
+              "content": "     <TestView itemClicked={() => console.log(\"Clicked\") }/>"
+            },
+            {
+              "type": "add",
+              "add": true,
+              "ln": 24,
+              "content": "+    <test-view/>"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 24,
+              "ln2": 25,
+              "content": "   </React.StrictMode>"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 25,
+              "ln2": 26,
+              "content": " );"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 26,
+              "ln2": 27,
+              "content": " "
+            }
+          ],
+          "oldStart": 21,
+          "oldLines": 6,
+          "newStart": 21,
+          "newLines": 7
+        }
+      ],
+      "deletions": 1,
+      "additions": 2,
+      "from": "src/index.js",
+      "to": "src/index.js",
+      "index": [
+        "3d79b1b..9883b51",
+        "100644"
+      ],
+      "newMode": "100644",
+      "oldMode": "100644"
+    },
+    {
+      "chunks": [],
+      "deletions": 0,
+      "additions": 0,
+      "from": "src/test.ts",
+      "to": "/dev/null",
+      "deleted": true,
+      "oldMode": "100644",
+      "index": [
+        "e69de29..0000000"
+      ]
+    },
+    {
+      "chunks": [
+        {
+          "content": "@@ -8,9 +8,9 @@ let users = [",
+          "changes": [
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 8,
+              "ln2": 8,
+              "content": " "
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 9,
+              "ln2": 9,
+              "content": " export class TestView extends LitElement {"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 10,
+              "ln2": 10,
+              "content": "   static properties = {"
+            },
+            {
+              "type": "del",
+              "del": true,
+              "ln": 11,
+              "content": "-    items: {},"
+            },
+            {
+              "type": "del",
+              "del": true,
+              "ln": 12,
+              "content": "-    nameAttribute: {},"
+            },
+            {
+              "type": "del",
+              "del": true,
+              "ln": 13,
+              "content": "-    secondaryAttribute: {},"
+            },
+            {
+              "type": "add",
+              "add": true,
+              "ln": 11,
+              "content": "+    items: Array,"
+            },
+            {
+              "type": "add",
+              "add": true,
+              "ln": 12,
+              "content": "+    nameAttribute: String,"
+            },
+            {
+              "type": "add",
+              "add": true,
+              "ln": 13,
+              "content": "+    secondaryAttribute: String,"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 14,
+              "ln2": 14,
+              "content": "   };"
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 15,
+              "ln2": 15,
+              "content": " "
+            },
+            {
+              "type": "normal",
+              "normal": true,
+              "ln1": 16,
+              "ln2": 16,
+              "content": "   constructor() {"
+            }
+          ],
+          "oldStart": 8,
+          "oldLines": 9,
+          "newStart": 8,
+          "newLines": 9
+        }
+      ],
+      "deletions": 3,
+      "additions": 3,
+      "from": "src/views/test_view.js",
+      "to": "src/views/test_view.js",
+      "index": [
+        "9107bb7..36aa7fe",
+        "100644"
+      ],
+      "newMode": "100644",
+      "oldMode": "100644"
+    }
+  ]

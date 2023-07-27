@@ -17,8 +17,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "parse-diff": "^0.11.1",
     "probot": "^12.2.4",
-    "spell-checker-js": "^1.2.6"
+    "spell-checker-js": "^1.2.6",
+    "typo-js": "^1.2.3"
   },
   "devDependencies": {
     "jest": "^29.0.0",

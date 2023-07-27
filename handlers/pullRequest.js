@@ -1,4 +1,4 @@
-const { spellCheck } = require("./checkTypo");
+const { createReview, getModifications } = require("./checkTypo");
 
 const handlePullRequest = async (context) => {
   try {
@@ -6,36 +6,19 @@ const handlePullRequest = async (context) => {
     const defaultBranch = context.payload.repository.default_branch;
     const owner = context.payload.repository.owner.login;
     const repo = context.payload.repository.name;
+    const pullNumber = context.payload.pull_request.number;
 
     if (baseBranch == defaultBranch) {
-      const pullNumber = context.payload.pull_request.number;
-      var response = await context.octokit.pulls.listFiles({
-        owner,
-        repo,
-        pull_number: pullNumber,
-      });
-      var files = response.data;
+      const dif_url = `GET https://github.com/${owner}/${repo}/pull/${pullNumber}.diff`;
+      var response = await context.octokit.request(dif_url);
+      const diff = decodeURIComponent(response.data);
+      let modifications = await getModifications(diff);
 
-      for (var i in files) {
-        let patch = files[i].patch;
-        /**
-         * example: "@@ -8,9 +8,9 @@
-         * let users = [\n \n export class TestView extends LitElement
-         * {\n   static properties = {\n-    items: {},\n-    nameAttribute: {},
-         * \n-    secondaryAttribute: {},\n+    items: Array,\n+    nameAttribute: String,
-         * \n+    secondaryAttribute: String,\n   };\n \n   constructor() {"
-         */
-        let lines = patch.split("\n");
-        lines.map((line) => {
-          if (line.startsWith("+")) {
-            let lineToCheck = line.replace("+", "").trim();
+      console.log(modifications);
 
-            const data = spellCheck(lineToCheck);
-            context.log.info(data);
-            if (data.length == 0)
-              context.log.info("No typos found in line: " + lineToCheck);
-          }
-        });
+      if (modifications.length > 0) {
+        //creating a review for the pull request
+        await createReview(context, owner, repo, pullNumber, modifications);
       }
     }
   } catch (error) {
