@@ -3,7 +3,7 @@
  * @param {import('probot').Probot} app
  */
 
-const {handlePullRequest, handlePullRequestEdited} = require("./handlers/pullRequest");
+const {handlePullRequest, handlePullRequestEdited} = require("./handlers/pull_request");
 module.exports = (app) => {
   // Your code here
   app.log.info("Yay, the app was loaded!");
