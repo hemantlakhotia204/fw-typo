@@ -1,7 +1,6 @@
 const spell = require("spell-checker-js");
 const parseDiff = require("parse-diff");
 const Typo = require("typo-js");
-// const Modification = require("../models/modifications");
 const { error } = require("console");
 
 const spellCheck = async (data, position) => {

@@ -3,11 +3,11 @@
  * @param {import('probot').Probot} app
  */
 
-const handlePullRequest = require("./handlers/pullRequest");
-const handlePush = require("./handlers/push");
+const {handlePullRequest, handlePullRequestEdited} = require("./handlers/pullRequest");
 module.exports = (app) => {
   // Your code here
   app.log.info("Yay, the app was loaded!");
+  // app.onAny((context) => console.log(context.payload));
 
   // app.on("issues.opened", async (context) => {
   //   const issueComment = context.issue({
@@ -19,4 +19,6 @@ module.exports = (app) => {
   // app.on("push", handlePush);
 
   app.on(["pull_request.opened", "pull_request.reopened"], handlePullRequest);
+
+  app.on(["pull_request_review_comment.edited"], handlePullRequestEdited);
 };
